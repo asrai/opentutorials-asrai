@@ -83,8 +83,7 @@ $topic = mysql_fetch_assoc($result);
             }
         </style>
     </head>
-  
-    <body id="body">
+  <body id="body">
         <div>
             <header>
                 <h1>JavaScript</h1>
@@ -112,14 +111,19 @@ $topic = mysql_fetch_assoc($result);
             </nav>
             <article>
                 <?php
-                if(!empty($topic)){
-                ?>
-                <h2><?=$topic['title']?></h2>
-                <div class="description">
-                    <?=$topic['description']?>
-                </div>
-                <?php
-                }
+				if(!empty($_REQUEST['title'])) {
+					$sql = "insert into `topic` (`title`, `description`, `created`) values('".$_REQUEST['title']."', '".$_REQUEST['description']."', '".date("Y-m-d H:i:s")."')";
+					$result = mysql_query($sql);
+					$id = mysql_insert_id();
+					if ($result == "1") {
+						?>
+		                <script type="text/javascript">
+		                	alert('저장 완료!!!');
+		                	location.replace("./index.php?id=" + <?=$id?>);
+	                	</script>
+		                <?php
+					}
+	            }
                 ?>
             </article>
         </div>

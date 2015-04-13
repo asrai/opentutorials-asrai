@@ -111,16 +111,19 @@ $topic = mysql_fetch_assoc($result);
                 </ul>
             </nav>
             <article>
-                <?php
-                if(!empty($topic)){
-                ?>
-                <h2><?=$topic['title']?></h2>
-                <div class="description">
-                    <?=$topic['description']?>
-                </div>
-                <?php
-                }
-                ?>
+            	<form action="./add_process.php" method="post">
+            		<p>
+            			제목:
+            			<input type="text" name="title" />
+            			<br />
+            		</p>
+            		<p>
+            			본문:
+            			<textarea name="description" rows="5" clos="20"></textarea>
+            			<br />
+            		</p>
+            		<input type="submit" value="제출" />
+            	</form>
             </article>
         </div>
     </body>
